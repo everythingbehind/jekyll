@@ -12,6 +12,7 @@ require 'time'
 # 3rd party
 require 'liquid'
 require 'redcloth'
+require 'mongrel'
 
 # internal requires
 require 'jekyll/site'
@@ -20,11 +21,13 @@ require 'jekyll/layout'
 require 'jekyll/page'
 require 'jekyll/post'
 require 'jekyll/filters'
+require 'jekyll/server'
 
 module Jekyll
   VERSION = '0.1.0'
   
-  def self.process(source, dest)
+  def self.process(source, dest, start_server=false)
+    Jekyll::Server.new.start(dest) if start_server
     Jekyll::Site.new(source, dest).process
   end
 end
