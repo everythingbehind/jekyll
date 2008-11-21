@@ -6,3 +6,9 @@ require 'jekyll'
 
 start_server = !ARGV[2].nil? && ARGV[2] == '--server'
 Jekyll.process(ARGV[0], ARGV[1], start_server)
+
+if ARGV[0] && ARGV[1]
+  Jekyll.process(ARGV[0], ARGV[1])
+else
+  puts "USAGE: jekyll /path/to/raw/site /path/to/generated/site"
+end
